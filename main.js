@@ -11,26 +11,26 @@ String.prototype.slugify = function (separator = "-") {
 };
 
 document.addEventListener('DOMContentLoaded', function() {
-  if(self.location.href.includes('article')) {
-      $.get($(".nav .active a")[0].href, function(data) { 
-          $(".nav .active").append("<ul class='subnav-list'>" + $(data).find('.articleList').html() + "</ul>"); 
-          $('a[href="' + location.pathname + '"]').parent().addClass('active');
-          $('.nav-collapse').append('<ul class="mobile-nav-list">'+$('ul.nav-list').html()+"</ul>");
-      });
-  } else if(self.location.href.includes('category')) {
-    $(".nav .active").append("<ul class='subnav-list'>" + $('.articleList').html() + "</ul>");
-    $('a[href="' + location.pathname + '"]').parent().addClass('active');
-    $('.nav-collapse').append('<ul class="mobile-nav-list">'+$('ul.nav-list').html()+"</ul>");
-  }
-  
-  // Add anchor and links to all H2s on the page
-  $("h2").each(function(i, el) { 
-    el.id = el.innerText.slugify(); 
-    $(el).wrap("<a href='#" + el.innerText.slugify() + "' style='text-decoration: none'></a>");
+    if(self.location.href.includes('article')) {
+        $.get($(".nav .active a")[0].href, function(data) { 
+            $(".nav .active").append("<ul class='subnav-list'>" + $(data).find('.articleList').html() + "</ul>"); 
+            $('a[href="' + location.pathname + '"]').parent().addClass('active');
+            $('.nav-collapse').append('<ul class="mobile-nav-list">'+$('ul.nav-list').html()+"</ul>");
+        });
+    } else if(self.location.href.includes('category')) {
+        $(".nav .active").append("<ul class='subnav-list'>" + $('.articleList').html() + "</ul>");
+        $('a[href="' + location.pathname + '"]').parent().addClass('active');
+        $('.nav-collapse').append('<ul class="mobile-nav-list">'+$('ul.nav-list').html()+"</ul>");
+    }
 
+    // Add anchor and links to all H2s on the page
+    $("h2").each(function(i, el) { 
+        el.id = el.innerText.slugify(); 
+        $(el).wrap("<a href='#" + el.innerText.slugify() + "' style='text-decoration: none'></a>");
+    });
+    
     // Now if we have a URL hash, scroll to it now
     if(window.location.hash != '') {
-      $("h2" + window.location.hash)[0].scrollIntoView();
+        $("h2" + window.location.hash)[0].scrollIntoView();
     }
-  });
 });
