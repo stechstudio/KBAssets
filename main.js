@@ -16,13 +16,13 @@ document.addEventListener('DOMContentLoaded', function() {
         $.get($(".nav .active a")[0].href, function(data) { 
             $(".nav .active").append("<ul class='subnav-list'>" + $(data).find('.articleList').html() + "</ul>"); 
             $('a[href="' + location.pathname + '"]').parent().addClass('active');
-            $('.nav-collapse').append('<ul class="mobile-nav-list">'+$('ul.nav-list').html()+"</ul>");
+            // $('.nav-collapse').append('<ul class="mobile-nav-list">'+$('ul.nav-list').html()+"</ul>");
         });
     } else if(self.location.href.includes('category')) {
         $('#main-content').prepend("<div class='breadcrumbs'><a href='/'>Home</a>");
         $(".nav .active").append("<ul class='subnav-list'>" + $('.articleList').html() + "</ul>");
         $('a[href="' + location.pathname + '"]').parent().addClass('active');
-        $('.nav-collapse').append('<ul class="mobile-nav-list">'+$('ul.nav-list').html()+"</ul>");
+        // $('.nav-collapse').append('<ul class="mobile-nav-list">'+$('ul.nav-list').html()+"</ul>");
     }
 
     // Add anchor and links to all H2s on the page
