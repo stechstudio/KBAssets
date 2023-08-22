@@ -12,12 +12,14 @@ String.prototype.slugify = function (separator = "-") {
 
 document.addEventListener('DOMContentLoaded', function() {
     if(self.location.href.includes('article')) {
+        $('#main-content').prepend("<div class='breadcrumbs'><a href='/'>Home</a>  >  <a href='" + $(".nav .active a")[0].href + "'>" + $(".nav .active a")[0].innerText.trim() + "</a></div>");
         $.get($(".nav .active a")[0].href, function(data) { 
             $(".nav .active").append("<ul class='subnav-list'>" + $(data).find('.articleList').html() + "</ul>"); 
             $('a[href="' + location.pathname + '"]').parent().addClass('active');
             $('.nav-collapse').append('<ul class="mobile-nav-list">'+$('ul.nav-list').html()+"</ul>");
         });
     } else if(self.location.href.includes('category')) {
+        $('#main-content').prepend("<div class='breadcrumbs'><a href='/'>Home</a>");
         $(".nav .active").append("<ul class='subnav-list'>" + $('.articleList').html() + "</ul>");
         $('a[href="' + location.pathname + '"]').parent().addClass('active');
         $('.nav-collapse').append('<ul class="mobile-nav-list">'+$('ul.nav-list').html()+"</ul>");
